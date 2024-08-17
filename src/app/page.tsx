@@ -2,6 +2,7 @@ import { GridLineBG } from "@/components/LineBG";
 import { NavBar } from "@/components/NavBar";
 import { Hero } from "@/components/Hero";
 import { WorkSection } from "@/components/Work";
+import { Projects } from "@/components/Projects";
 
 export default function Home() {
   return (
@@ -23,6 +24,8 @@ export default function Home() {
       </div>
       <Hero />
       <WorkSection />
+      <Projects />
+      <div className="h-[1000px]"></div>
     </main>
   );
 }

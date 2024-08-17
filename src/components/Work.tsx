@@ -37,42 +37,26 @@ export function WorkSection() {
             id="work-slide"
             className=" flex items-center gap-10 text-5xl font-bold text-[var(--accents-2)] select-none"
           >
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
-            <h1>WORK </h1>
+            {Array(20)
+              .fill(0)
+              .map((_, index) => (
+                <h1 key={index}>WORK </h1>
+              ))}
           </div>
-          <div className="relative c-container grid gap-y-16 w-full py-16">
-            {workItemsData.map((item, index) => (
-              <div key={index} className="grid grid-cols-12">
-                <WorkItem
-                  className={item.className}
-                  num={workItemsData.length - index}
-                  dateRange={item.dateRange}
-                  company={item.company}
-                  place={item.place}
-                  type={item.type}
-                />
-              </div>
-            ))}
-          </div>
+        </div>
+        <div className="relative c-container grid gap-y-16 w-full py-16">
+          {workItemsData.map((item, index) => (
+            <div key={index} className="grid grid-cols-12">
+              <WorkItem
+                className={item.className}
+                num={workItemsData.length - index}
+                dateRange={item.dateRange}
+                company={item.company}
+                place={item.place}
+                type={item.type}
+              />
+            </div>
+          ))}
         </div>
       </section>
     </GridLineBG>
