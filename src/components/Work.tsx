@@ -35,7 +35,7 @@ export function WorkSection() {
         <div className={roboto.className}>
           <div
             id="work-slide"
-            className="translate-x-1/2 flex items-center gap-10 text-9xl font-bold text-[var(--accents-1)]"
+            className=" flex items-center gap-10 text-5xl font-bold text-[var(--accents-2)] select-none"
           >
             <h1>WORK </h1>
             <h1>WORK </h1>
@@ -94,10 +94,25 @@ function WorkItem({
   place: string;
   type: string;
 }) {
+  const itemRef = useRef(null);
   const [open, setOpen] = useState(false);
+  useLayoutEffect(() => {
+    gsap.to(itemRef.current, {
+      scrollTrigger: {
+        trigger: itemRef.current,
+        start: "top bottom",
+        end: "top center",
+        scrub: true,
+      },
+      y: "0",
+      opacity: 1,
+    });
+  }, []);
+
   return (
     <div
-      className={`${className} relative rounded-2xl overflow-hidden p-[1px]`}
+      className={`${className} relative rounded-2xl overflow-hidden p-[1px] translate-y-36 opacity-0`}
+      ref={itemRef}
     >
       <div
         className="absolute top-0 left-0 w-full h-[calc(100%+3px)] animate-spin"
@@ -128,23 +143,21 @@ function WorkItem({
             </div>
           </div>
           <div className="mt-4 text-[var(--accents-6)]">
-            <button onClick={() => setOpen(!open)}>
+            {/* <button onClick={() => setOpen(!open)}>
               <Icons.chevronUp
                 className={`h-6 w-6 stroke-[var(--accents-5)] transition-all ${
                   open ? "rotate-180" : ""
                 }`}
               />
-            </button>
-            {open && (
-              <p>
-                I built and maintained a web application for a client that
-                allows users to create and manage their own custom API
-                documentation. I worked with a team of developers to design and
-                implement the application, using React, Node.js, and MongoDB. I
-                also worked with the client to ensure that the application met
-                their requirements and was easy to use.
-              </p>
-            )}
+            </button> */}
+            <p>
+              I built and maintained a web application for a client that allows
+              users to create and manage their own custom API documentation. I
+              worked with a team of developers to design and implement the
+              application, using React, Node.js, and MongoDB. I also worked with
+              the client to ensure that the application met their requirements
+              and was easy to use.
+            </p>
           </div>
         </div>
       </article>
