@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { Icons } from "./Icons";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const roboto = Roboto({
@@ -34,12 +35,12 @@ export function Projects() {
     const spacer = 20;
 
     cards.forEach((card, index) => {
-      const minScale = 0.9; // Minimum scale
-      const maxScale = 1; // Maximum scale
+      // const minScale = 0.9; // Minimum scale
+      // const maxScale = 1; // Maximum scale
 
-      // Calculate scale between minScale and maxScale
-      const scaleFactor =
-        minScale + (maxScale - minScale) * (index / (cards.length - 1));
+      // // Calculate scale between minScale and maxScale
+      // const scaleFactor =
+      //   minScale + (maxScale - minScale) * (index / (cards.length - 1));
 
       gsap.to(card, {
         scrollTrigger: {
@@ -48,12 +49,12 @@ export function Projects() {
           end: `bottom top+=${200 + cards.length * spacer}`,
           scrub: true,
         },
-        scale: scaleFactor,
+        scale: 1,
       });
 
       ScrollTrigger.create({
         trigger: card,
-        start: `top-=${index * spacer} top+=10%`,
+        start: `top top+=10%`,
         endTrigger: ".pin-panel",
         end: `bottom top+=${600 + cards.length * spacer}`,
         pin: true,
@@ -82,18 +83,155 @@ export function Projects() {
               ))}
           </div>
         </div>
-        <div
-          className="relative c-container flex flex-col items-center gap-[150px] w-full py-16"
-          id="stack-container"
-        >
-          <div className="project-card w-full rounded-[100px] bg-yellow-100 h-[500px] scale-[1.25]"></div>
-          <div className="project-card w-full rounded-[100px] bg-[var(--geist-background)] h-[500px] scale-[1.25]"></div>
-          <div className="project-card w-full rounded-[100px] bg-blue-500 h-[500px] scale-[1.25]"></div>
-          <div className="project-card w-full rounded-[100px] bg-green-500 h-[500px] scale-[1.25]"></div>
-          <div className="project-card w-full rounded-[100px] bg-[var(--accents-6)] h-[500px] scale-[1.25]"></div>
-          <div className="pin-panel h-[100px]"></div>
+        <div className="relative c-container-big flex flex-col items-center gap-[150px] w-full py-16">
+          <Project
+            className="bg-yellow-100"
+            isOdd
+            title="Sporty Tipsters"
+            description={`Sporty tipsters allows tipsters to make money sharing premium and free
+          sports betting predictions. With our automatic prediction tracking and
+          verification it also allows users to make informed decisions on which
+          tipster to subscribe to.`}
+            image="/sporty.png"
+            link="https://sportytipsters.com/"
+            tags={["React", "Next.js", "Prisma", "Tailwind CSS", "TypeScript"]}
+          />
+          <Project
+            className="bg-yellow-100"
+            title="Jay Data GH"
+            description={`A platform that allows users to buy affordable data MTN, Tigo and Telecel bundles and also register for MTN AFA.
+              I use paystack to handle payments and processed over 30,000 GHS in the first three months of launching the platform.`}
+            image="/jaydata.png"
+            link="https://jaydatagh.com/"
+            tags={[
+              "React",
+              "Next.js",
+              "Supabase",
+              "Tailwind CSS",
+              "TypeScript",
+            ]}
+          />
+          <Project
+            className="bg-yellow-100"
+            isOdd
+            title="Pokemon App"
+            description={`
+              This was a take home assignment for a job I applied for, I was task to build a frontend that consumes the pokemon api,
+              given a design to be implemented`}
+            image="/pokemon.png"
+            link="https://yussif-enyata.vercel.app/list-view"
+            github="https://github.com/dawkaka/enyata-assignment"
+            tags={["React", "Tailwind CSS", "TypeScript"]}
+          />
+          <Project
+            className="bg-yellow-100"
+            title="Drawing Web App"
+            description={`A web based drawing app much like excalidraw and tldraw,
+              which allows users to draw different kinds of shapes and
+              illulstrations save them and also share with others.`}
+            image="/draw.png"
+            link="https://draaaw.vercel.app/"
+            github="https://github.com/dawkaka/drawapp"
+            tags={["React", "Go", "Prisma", "Tailwind CSS", "TypeScript"]}
+          />
+
+          <div className="pin-panel h-[150px]"></div>
         </div>
       </section>
     </GridLineBG>
+  );
+}
+
+type ProjectProps = {
+  className: string;
+  isOdd?: boolean;
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  github?: string;
+  tags: string[];
+};
+
+function Project({
+  className,
+  isOdd,
+  title,
+  description,
+  image,
+  link,
+  github,
+  tags,
+}: ProjectProps) {
+  return (
+    <div
+      className={`project-card w-full border-[6px] border-[var(--geist-background)] grid md:grid-cols-2 overflow-hidden rounded-[100px] h-[500px] md:h-[600px] scale-[1.35]`}
+    >
+      <div className="h-full bg-[var(--geist-background)] flex flex-col gap-5 justify-center p-10 md:py-0 md:px-16 lg:px-24">
+        <h3 className="font-bold text-2xl md:text-4xl lg:text-6xl text-[var(--accents-7)]">
+          {title}
+        </h3>
+        <p className="text-[var(--accents-6)] text-lg">{description}</p>
+        <div className="border-b-2 flex gap-8 pt-5 border-b-[var(--accents-2)] pb-5">
+          <a
+            href={link}
+            target="_blank"
+            className="bg-[var(--accents-7)] group flex items-center gap-1 px-4 py-2 rounded-full"
+          >
+            View live
+            <Icons.arrowRight className="group-hover:-rotate-45 group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-all" />
+          </a>
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              className="border-2 border-[var(--accents-7)] group flex text-[var(--accents-7)] items-center gap-1 px-4 py-2 rounded-full"
+            >
+              View code
+              <Icons.arrowRight className="group-hover:-rotate-45 group-hover:translate-x-[2px] group-hover:-translate-y-[2px] transition-all" />
+            </a>
+          )}
+        </div>
+        <TechStack stack={tags} />
+      </div>
+      <div
+        className={`h-full flex flex-col justify-center bg-gradient-to-br overflow-hidden from-[var(--accents-8)] to-yellow-50 ${
+          isOdd
+            ? "order-last rounded-r-[calc(100px-8px)]"
+            : "order-first rounded-l-[calc(100px-8px)]"
+        }`}
+      >
+        <img src={image} alt={image} className="h-full" />
+      </div>
+    </div>
+  );
+}
+
+function TechStack({ stack }: { stack: string[] }) {
+  return (
+    <div className="flex items-center gap-[7px]">
+      {stack.map((tech, index) => (
+        <div key={index} className="relative">
+          {index !== stack.length - 1 && (
+            <svg
+              viewBox="0 0 10.21 24"
+              className="absolute top-1/2 -right-2 w-2 -translate-y-1/2 text-white z-0"
+              preserveAspectRatio="none"
+              fill="var(--accents-2)"
+            >
+              <path d="M10.21 4V0a4.09 4.09 0 0 1-4 4H4a4.09 4.09 0 0 1-4-4v24a4.09 4.09 0 0 1 4-4h2.21a4.09 4.09 0 0 1 4 4V4Z"></path>
+            </svg>
+          )}
+
+          <p
+            className={`${
+              index == 0 ? "translate-x-[1px]" : ""
+            } text-xs bg-[var(--accents-2)] text-[var(--accents-8)] rounded px-4 py-2 flex items-center`}
+          >
+            {tech}
+          </p>
+        </div>
+      ))}
+    </div>
   );
 }
