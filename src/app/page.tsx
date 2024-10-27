@@ -7,6 +7,7 @@ import { Projects } from "@/components/Projects";
 import ReactLenis from "lenis/react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { SkillsSection } from "@/components/Skills";
 
 export default function Home() {
   const lenisRef = useRef<any>(null);
@@ -43,6 +44,7 @@ export default function Home() {
         <Hero />
         <WorkSection />
         <Projects />
+        <SkillsSection />
         <div className="h-[1000px]"></div>
       </ReactLenis>
     </main>

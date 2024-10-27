@@ -23,12 +23,14 @@ export function Hero() {
   return (
     <div
       ref={parentContainer}
-      className="c-container py-44 relative overflow-visible  text-slate-800"
+      className="c-container py-24 md:py-44 relative overflow-visible  text-slate-800"
     >
-      <div className="grid grid-cols-12 justify-between">
-        <div className="text-[7rem] col-span-10 tracking-widest leading-[.75] font-black w-3/4 overflow-visible">
+      <div className="flex flex-col gap-14 md:gap-4 md:grid md:grid-cols-12 md:justify-between">
+        <div className="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] md:col-span-10 tracking-widest leading-[.75] font-black w-full md:w-3/4 overflow-visible">
           <div className="flex items-center gap-2">
-            <span className="text-gray-400 text-sm">The name...</span>
+            <span className="text-gray-400 text-sm hidden sm:inline-block">
+              The name...
+            </span>
             <h1 className="text-3xl flex items-center tracking-normal font-medium italic font-sans text-orange-500">
               Yussif Mohammed
             </h1>
@@ -43,7 +45,7 @@ export function Hero() {
           </div>
           <h4 className="">DEVELOPER</h4>
         </div>
-        <div className="flex flex-col  gap-4 justify-between col-span-2 items-center">
+        <div className="flex flex-wrap md:flex-col gap-8 gap-y-2 md:justify-between col-span-2 items-center [&>button]:shrink-0">
           <button className="rounded-full w-max border-2 border-slate-900 px-4 py-2 flex items-center gap-2">
             <Icons.mail className="h-4 w-4 stroke-slate-900" />
             Contact me

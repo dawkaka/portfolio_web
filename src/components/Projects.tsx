@@ -35,13 +35,6 @@ export function Projects() {
     const spacer = 20;
 
     cards.forEach((card, index) => {
-      // const minScale = 0.9; // Minimum scale
-      // const maxScale = 1; // Maximum scale
-
-      // // Calculate scale between minScale and maxScale
-      // const scaleFactor =
-      //   minScale + (maxScale - minScale) * (index / (cards.length - 1));
-
       gsap.to(card, {
         scrollTrigger: {
           trigger: card,
@@ -49,7 +42,6 @@ export function Projects() {
           end: `bottom top+=${200 + cards.length * spacer}`,
           scrub: true,
         },
-        scale: 1,
       });
 
       ScrollTrigger.create({
@@ -66,10 +58,7 @@ export function Projects() {
   }, []);
 
   return (
-    <GridLineBG
-      bgColor="bg-[var(--geist-foreground)]"
-      lineColor="[&>div]:border-[var(--accents-7)]"
-    >
+    <GridLineBG bgColor="" lineColor="[&>div]:border-gray-200">
       <section className="py-14 md:py-14 z-20" ref={parentContainer}>
         <div className={roboto.className}>
           <div
@@ -83,7 +72,7 @@ export function Projects() {
               ))}
           </div>
         </div>
-        <div className="relative c-container-big flex flex-col items-center gap-[150px] w-full py-16">
+        <div className="relative c-container flex flex-col items-center gap-[150px] w-full py-16">
           <Project
             className="bg-yellow-100"
             isOdd
@@ -165,9 +154,9 @@ function Project({
 }: ProjectProps) {
   return (
     <div
-      className={`project-card w-full border-[6px] border-[var(--geist-background)] grid md:grid-cols-2 overflow-hidden rounded-[100px] h-[500px] md:h-[600px] scale-[1.35]`}
+      className={`project-card w-full border-[6px] border-[var(--geist-background)] grid md:grid-cols-2 overflow-hidden rounded-[20px] h-[500px] md:h-[600px]`}
     >
-      <div className="h-full bg-[var(--geist-background)] flex flex-col gap-5 justify-center p-10 md:py-0 md:px-16 lg:px-24">
+      <div className="h-full bg-[var(--geist-background)] flex flex-col gap-5 justify-center p-6 md:py-0 md:px-10">
         <h3 className="font-bold text-2xl md:text-4xl lg:text-6xl text-[var(--accents-7)]">
           {title}
         </h3>
@@ -195,13 +184,13 @@ function Project({
         <TechStack stack={tags} />
       </div>
       <div
-        className={`h-full flex flex-col justify-center bg-gradient-to-br overflow-hidden from-[var(--accents-8)] to-yellow-50 ${
+        className={`h-full hidden md:flex flex-col justify-center bg-gradient-to-br overflow-hidden from-[var(--accents-8)] to-yellow-50 ${
           isOdd
-            ? "order-last rounded-r-[calc(100px-8px)]"
-            : "order-first rounded-l-[calc(100px-8px)]"
+            ? "order-last rounded-r-[calc(20px-8px)]"
+            : "order-first rounded-l-[calc(20px-8px)]"
         }`}
       >
-        <img src={image} alt={image} className="h-full" />
+        <img src={image} alt={image} className="object-cover h-full" />
       </div>
     </div>
   );
