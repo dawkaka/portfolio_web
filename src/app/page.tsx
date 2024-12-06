@@ -24,7 +24,7 @@ export default function Home() {
     };
   });
   return (
-    <main className="flex flex-col items-center w-full overflow-x-hidden pb-96">
+    <main className="flex flex-col items-center w-full overflow-x-hidden">
       <ReactLenis root ref={lenisRef}>
         <NavBar />
         <div className="fixed c-container inset-0 grid grid-cols-12 gap-4 [&>div]:border [&>div]:border-gray-200 [&>div]:border-dashed -z-[1]">
@@ -45,7 +45,6 @@ export default function Home() {
         <WorkSection />
         <Projects />
         <SkillsSection />
-        <div className="h-[1000px]"></div>
       </ReactLenis>
     </main>
   );

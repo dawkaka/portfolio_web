@@ -59,7 +59,11 @@ export function Projects() {
 
   return (
     <GridLineBG bgColor="" lineColor="[&>div]:border-gray-200">
-      <section className="py-14 md:py-14 z-20" ref={parentContainer}>
+      <section
+        className="py-14 md:py-14 z-20"
+        ref={parentContainer}
+        id="projects"
+      >
         <div className={roboto.className}>
           <div
             id="slide"
@@ -125,6 +129,14 @@ export function Projects() {
           />
 
           <div className="pin-panel h-[150px]"></div>
+          <a
+            href="https://github.com/dawkaka"
+            target="_BLANK"
+            className="flex items-center gap-1 group font-medium text-xl"
+          >
+            Find more on my github{" "}
+            <Icons.arrowRight className="group-hover:translate-x-[3px] transition-all" />
+          </a>
         </div>
       </section>
     </GridLineBG>

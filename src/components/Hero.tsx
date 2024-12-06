@@ -26,7 +26,7 @@ export function Hero() {
       className="c-container py-24 md:py-44 relative overflow-visible  text-slate-800"
     >
       <div className="flex flex-col gap-14 md:gap-4 md:grid md:grid-cols-12 md:justify-between">
-        <div className="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] md:col-span-10 tracking-widest leading-[.75] font-black w-full md:w-3/4 overflow-visible">
+        <div className="text-[3rem] md:text-[4rem] lg:text-[5rem] md:col-span-10 tracking-[0.2em] leading-[0.98] font-black w-full md:w-3/4 overflow-visible">
           <div className="flex items-center gap-2">
             <span className="text-gray-400 text-sm hidden sm:inline-block">
               The name...

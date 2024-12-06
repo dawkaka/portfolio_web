@@ -31,7 +31,7 @@ export function WorkSection() {
       bgColor="bg-[var(--geist-background)]"
       lineColor="[&>div]:border-[var(--accents-1)]"
     >
-      <section className="py-14 md:py-14 z-20" ref={parentContainer}>
+      <section className="py-14 md:py-14 z-20" ref={parentContainer} id="work">
         <div className={roboto.className}>
           <div
             id="work-slide"
@@ -54,6 +54,8 @@ export function WorkSection() {
                 company={item.company}
                 place={item.place}
                 type={item.type}
+                summary={item.summary}
+                resp={item.resp}
               />
             </div>
           ))}
@@ -70,13 +72,17 @@ function WorkItem({
   dateRange,
   place,
   type,
+  summary,
+  resp,
 }: {
   className: string;
   company: string;
   num: number;
   dateRange: string;
+  summary: string;
   place: string;
   type: string;
+  resp: string[];
 }) {
   const itemRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -134,14 +140,15 @@ function WorkItem({
                 }`}
               />
             </button> */}
-            <p>
-              I built and maintained a web application for a client that allows
-              users to create and manage their own custom API documentation. I
-              worked with a team of developers to design and implement the
-              application, using React, Node.js, and MongoDB. I also worked with
-              the client to ensure that the application met their requirements
-              and was easy to use.
-            </p>
+            <p>{summary}</p>
+            <ul className="mt-4 flex flex-col gap-1">
+              {resp.map((item, index) => (
+                <li key={index} className="flex gap-2 items-start">
+                  <Icons.arrowLeft className="h-4 w-4 rotate-180 shrink-0 mt-1 font-bold text-[var(--accents-4)]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </article>
@@ -156,6 +163,16 @@ const workItemsData = [
     dateRange: "Sep. 2020 - present",
     className: "col-span-12 md:col-span-6",
     type: "Full-time | Software Developer",
+    summary:
+      "APIToolkit is an OpenTelemetry vendor that helps developers monitor their APIs and spot bugs faster",
+    resp: [
+      "Ingesting and visualizing open telemetry logs, metrics and traces (span list, flamegraph, waterfall etc.)",
+      "Built a query builder that allows our customers to easily query their request logs without writing our query language",
+      "Built an in-house swagger editor and generator, It generates swagger doc based on a project's traffic which is very reliable and up-to-date",
+      "Rebuilt the entire site, landing page, pricing page, documentation, and blog page.",
+      "Built several SDKs in various programming languages and frameworks which allows our customers to integrate APIToolkit into their backends seamlessly.",
+      "Writing clear and concise documentation on how to use our SDK",
+    ],
   },
   {
     company: "Prime Couples",
@@ -163,6 +180,15 @@ const workItemsData = [
     dateRange: "2020 - 2021",
     className: "col-span-12 md:row-span-1 md:col-start-4 md:col-span-6",
     type: "Full-time | Full Stack Developer",
+    summary:
+      "Prime couples is a social media made for couples to share their love and relationship with their followers. Much like instagram but for couples instead of individual profiles.",
+    resp: [
+      "Built most of the backend in Go",
+      "Built the frontend using NextJs and Typescript",
+      "Built the posts recommendation algorithms to show posts users are interested in",
+      "Implemented the chat feature using socket.io and NodeJs",
+      "Responsible for deployment and maintenance of the site. Hosted on AWS (EC2, S3, CLoudFront, SES)",
+    ],
   },
   {
     company: "Toonji Lyrics",
@@ -170,13 +196,29 @@ const workItemsData = [
     dateRange: "2020 - 2021",
     className: "md:row-span-1 md:col-start-7 col-span-12",
     type: "Full-time | Full Stack Developer",
+    summary:
+      "Toonji provides a dynamic platform tailored for music enthusiasts, akin to Genius but enhanced with captivating features catered specifically to music lovers.",
+    resp: [
+      "Creation of the real-time battle feature, enabling users to initiate quiz competitions based on selected artists' song lyrics and shareable links.",
+      "Complete development of the mobile application using React Native.",
+      "Implementation of an award system to recognize high-quality breakdown contributions.",
+      "End-to-end parsing and validation of new lyrics posted on the platform.",
+      "Management of hosting and server operations on AWS (utilizing EC2, S3 for file storage, and CloudFront as CDN).",
+      "Integration of Spotify for seamless audio playback of selected lyrics.",
+    ],
   },
   {
     company: "Freelance Developer",
     place: "Accra, Ghana. Remote",
-    dateRange: "2020 - 2021",
+    dateRange: "2020 - present",
     className: "row-span-1 col-span-12 md:col-start-4 md:col-span-6",
     type: "Full-time | Full Stack Developer",
+    summary: "Freelance work I did for clients",
+    resp: [
+      "Jay Data Gh, a website that allows people to seamlessly buy affordable data bundles",
+      "A voting website for a local college",
+      "Many other landing page websites for several clients",
+    ],
   },
   {
     company: "Hotels.ng",
@@ -184,5 +226,14 @@ const workItemsData = [
     dateRange: "2020 - 2021",
     className: "col-span-12 col-start-1 md:col-span-6",
     type: "Internship | Frontend Developer",
+    summary:
+      "As part of the frontend team, we collaborated with designers, backend engineers, and product managers to build a weather app targeting tropical areas",
+    resp: [
+      "Helped team members in debugging and fixing issues they faced.",
+      "Built the landing page of the application",
+      'Creating a dynamic animation displaying current time and weather information, known as "the line."',
+      "Added custom theme selection on the platform",
+      "Built the search locations functionality using geolocation API",
+    ],
   },
 ];
